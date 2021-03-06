@@ -1,0 +1,104 @@
+{% extends "base.html" %} {% block head %}
+<title>Products</title>
+{% endblock %} {% block body %} {% if form.errors %} {{ form.errors }} {% endif
+%}
+<div class="container">
+  <h1>Product List</h1>
+
+  <div class="card-columns">
+    {% for product in products %}
+
+    <div class="card" style="width: 25rem">
+      <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <p class="card-text">size: 
+          <select name="" id="">
+          {% for size in product.sizes %}
+          <option value="{{size.size.id}}">{{size.size.name}}</option>
+         {% endfor %}
+
+        </select>
+        <a href="" class="btn btn-primary btn-sm">edit size</a>
+        <a href="" class="btn btn-primary btn-sm">add size</a>
+        <a href="" class="btn btn-primary btn-sm">add size</a>
+        
+      </p>
+
+        <p class="card-text"> 
+          color {% for color in product.sizes[0].colors %}
+          <div class="color-option" style="display: inline;">
+            {{ color.color.name }}
+          </div>
+          {% endfor %}
+          
+          
+          </p>
+        <p class="card-text">price {{product.sizes[0].price}}</p>
+        <button data-id="{{product.id}}" class="btn btn-primary btn-sm delete-product">Delete </a>
+
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+<div class="container" style="width: 45%; margin-top: 150px;">
+  <h2 class="title">Create Product</h2>
+
+  <form method="POST">
+    <div class="form-group row">
+      {{ form.name.label }} {{ form.name(class_="form-control") }}
+     {% if form.name.errors %}
+      <ul class="errors">
+        {% for error in form.name.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    <div class="new-size">
+    <div class="form-group row">
+      {{ form.size.label }} {{ form.size(class_="custom-select size-tag") }} {% if
+      form.size.errors %}
+      <ul class="errors">
+        {% for error in form.size.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+
+    <div class="form-group row">
+      {{ form.color.label }} {{ form.color(class_="custom-select color-tag") }} {%
+      if form.color.errors %}
+      <ul class="errors">
+        {% for error in form.color.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+
+
+    <div class="form-group row">
+      {{ form.price.label }} {{ form.price(class_="form-control") }} {% if form.price.errors %}
+      <ul class="errors">
+        {% for error in form.price.errors %}
+        <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+  <div class="buttons">
+    <button class="btn btn-secondary btn-sm create-size-variants">Create Size Variant</button>
+    <button class="btn btn-secondary btn-sm create-color-variants">Create Color Variant</button>
+  </div>
+  
+    <div style="margin-top: 10px;">{{ form.submit(class_="btn btn-primary") }} </div>
+</div>
+
+</form>
+
+{% endblock %}
