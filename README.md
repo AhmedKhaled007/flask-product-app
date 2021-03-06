@@ -8,9 +8,14 @@ pip requirements.txt
 
 ### Setup Config
 
+#### set environment variable
+
 ```
-set environment variable
-F
+FLASK_APP = product_app
+```
+
+#### set database URL
+
 ### Run Migrations
 
 ```
@@ -26,7 +31,5 @@ flask db upgrade
 ```
 
 flask run
-
-```
 
 ```
