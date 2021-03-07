@@ -6,7 +6,7 @@ $(document).ready(function(){
     $(".delete-product").click(function(){
         product_id = $(this).attr('data-id')
             $.ajax({
-            url: `${product_id}`,
+            url: `/products/${product_id}`,
             type: 'DELETE',
                 success: function(){
             this.parent.parent.remove();
