@@ -11,6 +11,5 @@ def create_app(config_name='development'):
     # app.config.from_pyfile('config.py')
     db.init_app(app)
     migrate = Migrate(app, db)
-
     app.register_blueprint(main)
     return app
